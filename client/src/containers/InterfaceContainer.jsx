@@ -13,31 +13,33 @@ function InterfaceContainer() {
   const { isMobile } = useContext(UserProvider.context);
   return (
     <div className="interface-container">
-      <Switch>
-        <Route path="/" exact>
-          <MainPage />
-        </Route>
-        <Route path="/mark/new">
-          <CreatePage />
-        </Route>
-        <Route path="/note/new">
-          <CreatePage />
-        </Route>
-        {/* <Route path="/isolated/new">
+      <div className="interface-pages-wrap">
+        <Switch>
+          <Route path="/" exact>
+            <MainPage />
+          </Route>
+          <Route path="/mark/new">
+            <CreatePage />
+          </Route>
+          <Route path="/note/new">
+            <CreatePage />
+          </Route>
+          {/* <Route path="/isolated/new">
           <CreatePage />
         </Route> */}
-        <Route path="/user/me" exact>
-          <MePage />
-        </Route>
-        <Route path="/user/:uid">
-          <UserPage />
-        </Route>
-        <Route path="/auth" exact>
-          <AuthHandler />
-        </Route>
-        <Route path="/mark/:id"></Route>
-        <Redirect to="/" exact />
-      </Switch>
+          <Route path="/user/me" exact>
+            <MePage />
+          </Route>
+          <Route path="/user/:uid">
+            <UserPage />
+          </Route>
+          <Route path="/auth" exact>
+            <AuthHandler />
+          </Route>
+          <Route path="/mark/:id"></Route>
+          <Redirect to="/" exact />
+        </Switch>
+      </div>
       {isMobile() && <InterfaceSwitcher />}
     </div>
   );
