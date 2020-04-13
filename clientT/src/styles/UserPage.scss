@@ -1,0 +1,201 @@
+.user-page__container {
+  .user-page__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .control-home {
+    height: 24px;
+    width: 24px;
+    background-image: url(../assets/icons/back.svg);
+    opacity: 0.64;
+    transition: opacity 0.2s ease-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .logout {
+    font-size: 16px;
+    line-height: 19px;
+    color: #999999;
+  }
+
+  .user-avatar {
+    width: 75px;
+    border-radius: 10px;
+    margin: auto;
+    display: block;
+    margin-top: 36px;
+  }
+
+  .user-page__contacts-wrapper {
+    margin-top: 8px;
+
+    .user-page__email {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      color: #999999;
+    }
+
+    input {
+      width: 100%;
+      background: #f5f5f5;
+      border-radius: 10px;
+      font-size: 16px;
+      line-height: 19px;
+      display: flex;
+      align-items: center;
+      color: #999999;
+      padding: 10px;
+      margin-top: 8px;
+      border: none;
+    }
+  }
+
+  .user-page__collected-container {
+    margin-top: 36px;
+
+    .collection-title-wrapper {
+      font-size: 15px;
+      line-height: 22px;
+      display: flex;
+      align-items: center;
+      letter-spacing: 0.01em;
+      text-transform: capitalize;
+      color: #333333;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      margin-bottom: 15px;
+      font-weight: 500;
+
+      h4 {
+        display: flex;
+        align-items: center;
+
+        .toggle {
+          background-image: url("../assets/icons/toggle.svg");
+          background-size: cover;
+          height: 12px;
+          width: 10px;
+          transition: transform 0.1s ease;
+          cursor: pointer;
+          margin-right: 8px;
+
+          &.down {
+            transform: rotate(90deg);
+          }
+        }
+      }
+    }
+
+    .collection-list-wrapper {
+      .collection-single-container {
+        border-radius: 10px;
+        padding: 8px 4px;
+        width: 100%;
+        margin-bottom: 2px;
+
+        // &:hover {
+        //   background: #f5f5f5;
+        // }
+
+        .collection-single-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 8px 0;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          .single-location {
+            background-image: url(../assets/icons/my_location-24px.svg);
+            height: 20px;
+            width: 20px;
+            background-size: cover;
+            opacity: 0.38;
+            transition: opacity 0.2s ease-out;
+
+            &:hover {
+              opacity: 1;
+            }
+          }
+
+          .single-status {
+            font-style: italic;
+          }
+        }
+
+        .collection-single-details {
+          margin-top: 20px;
+          border-bottom: 2px solid #000;
+
+          .detail {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            align-items: flex-start;
+
+            &.status-wrapper {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+
+              .detail-title {
+                text-align: left;
+                margin-bottom: 8px;
+              }
+
+              .detail-value {
+                display: flex;
+                justify-content: space-between;
+                margin-left: 0 !important;
+                width: 100%;
+              }
+            }
+
+            .detail-title {
+              font-size: 14px;
+              line-height: 24px;
+              color: #999;
+              text-transform: capitalize;
+            }
+
+            .detail-value {
+              font-size: 14px;
+              line-height: 24px;
+              text-align: right;
+              margin-left: 10px;
+
+              .status {
+                height: 40px;
+                background: #f5f5f5;
+                border-radius: 4px;
+                margin-bottom: 8px;
+                line-height: 40px;
+                text-align: center;
+                padding: 0px 7px;
+                font-size: 14px;
+                transition: all 0.1s ease;
+                cursor: pointer;
+
+                &.on,
+                &:hover {
+                  background: #333;
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
