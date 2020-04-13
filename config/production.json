@@ -1,0 +1,9 @@
+{
+  "port": 5000,
+  "mongoUriDev": "mongodb+srv://slava:covidDbDev@dev-1-yg6fl.gcp.mongodb.net/test?retryWrites=true&w=majority",
+  "mongoUri": "mongodb+srv://covid-admin:fast2bee2020@covid-prod-02nvr.mongodb.net/test?retryWrites=true&w=majority",
+  "baseUrl": "http://localhost:5000",
+  "clientID": "366991083646-s20n49fdkdc7l847m7qcce91m6dnnnfh.apps.googleusercontent.com",
+  "clientSecret": "mMXhfptQ5tXtfuSz5mqNSw9A",
+  "cookieKey": "rjhjyjdbhecRerbCtrhtnyfzAhfpf"
+}
