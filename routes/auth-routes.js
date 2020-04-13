@@ -18,7 +18,7 @@ router.get(
 router.get(
   "/google/redirect",
   passport.authenticate("google", {
-    successRedirect: CLIENT_HOME_PAGE_URL,
+    successRedirect: config.get("baseUrl"),
     failureRedirect: "/auth/login/failed",
   })
 );
