@@ -4,7 +4,7 @@ const config = require("config");
 const User = require("../models/User");
 const {
   handleUserAuth,
-  handleDeserialize
+  handleDeserialize,
 } = require("../controllers/user-controllers");
 
 const clientID = config.get("clientID");
@@ -21,9 +21,9 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      callbackURL: "http://localhost:5000/api/auth/google/redirect",
+      callbackURL: `${config.get("baseUrl")}api/auth/google/redirect`,
       clientID,
-      clientSecret
+      clientSecret,
     },
     (accessToken, refreshToken, profile, done) => {
       // console.log("profile", profile);

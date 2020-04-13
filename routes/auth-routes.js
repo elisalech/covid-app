@@ -1,17 +1,16 @@
 const router = require("express").Router();
 const passport = require("passport");
-
-const CLIENT_HOME_PAGE_URL = "http://localhost:3000";
+const config = require("config");
 
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect(CLIENT_HOME_PAGE_URL);
+  res.redirect(config.get("baseUrl"));
 });
 
 router.get(
   "/google",
   passport.authenticate("google", {
-    scope: ["profile", "email"]
+    scope: ["profile", "email"],
   })
 );
 
@@ -20,7 +19,7 @@ router.get(
   "/google/redirect",
   passport.authenticate("google", {
     successRedirect: CLIENT_HOME_PAGE_URL,
-    failureRedirect: "/auth/login/failed"
+    failureRedirect: "/auth/login/failed",
   })
 );
 
