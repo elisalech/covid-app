@@ -38,6 +38,39 @@ body {
   overflow: scroll;
 }
 
+.interface-switcher {
+  width: 31px;
+  height: 100px;
+  background: #fff;
+  border-radius: 0 5px 7px 0;
+  position: fixed;
+  top: 0;
+  left: 287px;
+  z-index: 10;
+  box-shadow: 20px 2px 24px rgba(0, 0, 0, 0.05);
+  transition: left 0.3s ease;
+  display: flex;
+}
+
+.closed > .interface-switcher {
+  left: 0;
+  border-radius: 0 5px 30px 0;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15),
+    0 2px 5px -3px rgba(0, 0, 0, 0.15);
+}
+
+.switcher-icon {
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+  margin: auto;
+  background-image: url(../assets/icons/arrow_back.svg);
+}
+
+.closed .switcher-icon {
+  background-image: url(../assets/icons/arrow_forward.svg);
+}
+
 #map-container {
   height: 100%;
   width: calc(100% - 288px);
