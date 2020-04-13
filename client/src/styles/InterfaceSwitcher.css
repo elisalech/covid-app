@@ -3,6 +3,7 @@
   height: 100px;
   background-color: #fff !important;
   border-radius: 0 5px 7px 0;
+  border: 1px solid black;
   position: fixed;
   top: 0;
   left: 287px;
@@ -25,9 +26,9 @@
   height: 24px;
   margin: auto;
   z-index: 100001;
-  /* background-image: url(../assets/icons/arrow_back.svg); */
+  background-image: url(../assets/icons/arrow_back.svg);
 }
 
 .closed .switcher-icon {
-  /* background-image: url(../assets/icons/arrow_forward.svg); */
+  background-image: url(../assets/icons/arrow_forward.svg);
 }
