@@ -1,5 +1,7 @@
 import React from "react";
 
+import "../styles/InterfaceSwitcher.css";
+
 export default () => {
   const switchHandler = () => {
     const toHide = document.querySelector(".interface-container");
