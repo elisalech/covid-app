@@ -77,7 +77,7 @@ export default class MapReact extends Component {
 
     return (
       <YMaps
-        // enterprise
+        enterprise
         query={{
           apikey: YA_API,
           lang: "en_US",
@@ -101,7 +101,7 @@ export default class MapReact extends Component {
               float: "right",
               iconLayout: "default#image",
               // Custom image for the placemark icon.
-              iconImageHref: meIcon,
+              // iconImageHref: meIcon,
               // The size of the placemark.
               iconImageSize: [30, 42],
               // The offset of the upper left corner of the icon relative

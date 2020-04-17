@@ -1,12 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 import UserProvider from "../contexts/UserProvider";
 
-// import GOOGLE_BUTTON from "./google_button.png";
-// const SERVER = "http://localhost:5000/api";
-// test
-
-const AuthHandler = (props) => {
+const AuthHandler = () => {
   const { userData } = useContext(UserProvider.context);
 
   if (!userData) return null;

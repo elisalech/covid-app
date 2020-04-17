@@ -2,9 +2,14 @@ const router = require("express").Router();
 const passport = require("passport");
 const config = require("config");
 
+const redirectUrl =
+  process.env.NODE_ENV === "production"
+    ? config.get("baseUrl")
+    : "http://localhost:3000";
+
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect(config.get("baseUrl"));
+  res.redirect(redirectUrl);
 });
 
 router.get(
@@ -18,7 +23,7 @@ router.get(
 router.get(
   "/google/redirect",
   passport.authenticate("google", {
-    successRedirect: config.get("baseUrl"),
+    successRedirect: redirectUrl,
     failureRedirect: "/auth/login/failed",
   })
 );

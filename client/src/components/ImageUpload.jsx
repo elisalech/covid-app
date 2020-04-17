@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 
+import ImagePreview from "./ImagePreview";
+
 const ImageUpload = ({ onInput }) => {
-  const [file, setFile] = useState();
+  const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState();
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(null);
 
   const filePickerRef = useRef();
 
@@ -33,29 +35,60 @@ const ImageUpload = ({ onInput }) => {
     onInput(pickedFile, fileIsValid);
   };
 
+  const externalImgHandler = (e) => {
+    setIsValid(false);
+    setFile(null);
+    setPreviewUrl(e.target.value);
+
+    if (!e.target.value) return;
+    setIsValid(true);
+  };
+
   const pickImageHandler = () => {
     filePickerRef.current.click();
   };
 
+  const handleError = () => {
+    setIsValid(false);
+  };
+
   return (
-    <div className="form-control">
-      <input
-        // id={props.id}
-        ref={filePickerRef}
-        style={{ display: "none" }}
-        type="file"
-        accept=".jpg,.png,.jpeg"
-        onChange={pickedHandler}
-      />
-      <div className={`image-upload center`}>
-        <div className="image-upload__preview">
-          {previewUrl && <img src={previewUrl} alt="Preview" />}
-          {!previewUrl && <p>Please pick an image.</p>}
-        </div>
+    <>
+      <div className="image-upload">
+        <input
+          // id={props.id}
+          ref={filePickerRef}
+          style={{ display: "none" }}
+          type="file"
+          accept=".jpg,.png,.jpeg"
+          onChange={pickedHandler}
+        />
         <div onClick={pickImageHandler}>PICK IMAGE</div>
+        {isValid === false && <p>Error! img!</p>}
       </div>
-      {!isValid && <p>Error! img!</p>}
-    </div>
+      <div className="field">
+        <label htmlFor="coords" className="coords">
+          Or past a link to image
+        </label>
+        <input
+          type="text"
+          name="imagelink"
+          id="imagelink"
+          onChange={externalImgHandler}
+        />
+      </div>
+      <div className="image-upload__preview">
+        {previewUrl && (
+          <ImagePreview
+            width="200"
+            height=""
+            previewUrl={previewUrl}
+            handleError={handleError}
+          />
+        )}
+        {!previewUrl && <p>preview description</p>}
+      </div>
+    </>
   );
 };
 

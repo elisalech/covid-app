@@ -23,11 +23,8 @@ const CreatePage = () => {
       credentials: "include",
       headers: {
         Accept: "application/json",
-        // "Content-Type": "multipart/form-data",
-        // "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": true,
       },
-      // body: JSON.stringify(formData),
       body: formData,
     }).then((res) => history.push("/"));
   };
@@ -44,11 +41,7 @@ const CreatePage = () => {
     let formData = new FormData(form);
     const optionalData = Object.entries(optional)[0];
     formData.append(optionalData[0], optionalData[1]);
-    // formData = [...formData];
 
-    // const data = formData.reduce((ac, pair) => {
-    //   return { ...ac, [`${pair[0]}`]: pair[1] };
-    // }, {});
     handleNewPoint(formData, label);
   };
 
@@ -67,18 +60,18 @@ const CreatePage = () => {
     );
     title = "Adding new info point";
   }
-  // if (location.includes("isolated/new")) {
-  //   form = (
-  //     <IsolatedForm
-  //       label="isolated"
-  //       handleNewPoint={handleNewPoint}
-  //       handleSubmit={handleSubmit}
-  //       handleResize={handleResize}
-  //       coords={coords ? coords.join(",") : null}
-  //     />
-  //   );
-  //   title = "Your Isolation";
-  // }
+  if (location.includes("isolation/new")) {
+    form = (
+      <IsolatedForm
+        label="isolated"
+        handleNewPoint={handleNewPoint}
+        handleSubmit={handleSubmit}
+        handleResize={handleResize}
+        coords={coords ? coords.join(",") : null}
+      />
+    );
+    title = "Your Isolation";
+  }
   if (location.includes("mark/new")) {
     form = (
       <InfectionForm
