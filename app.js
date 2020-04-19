@@ -7,7 +7,6 @@ const passport = require("passport");
 const passportSetup = require("./config/passport-setup");
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
-const https = require("https");
 
 const authRoutes = require("./routes/auth-routes.js");
 const markRoutes = require("./routes/mark-routes.js");
@@ -56,11 +55,6 @@ if (process.env.NODE_ENV === "production") {
 
 const PORT = config.get("port") || 5000;
 
-const httpsOptions = {
-  key: fs.readFileSync(sslKey),
-  cert: fs.readFileSync(sslCert),
-};
-
 async function start() {
   try {
     await mongoose.connect(config.get("mongoUri"), {
@@ -68,11 +62,10 @@ async function start() {
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-    https
-      .createServer(httpsOptions, app)
-      .listen(PORT, () =>
-        console.log(`App has been started on port ${PORT}...`)
-      );
+
+    app.listen(PORT, () =>
+      console.log(`App has been started on port ${PORT}...`)
+    );
   } catch (e) {
     console.log("Server Error", e.message);
     process.exit(1);
