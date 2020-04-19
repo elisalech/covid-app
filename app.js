@@ -7,6 +7,7 @@ const passport = require("passport");
 const passportSetup = require("./config/passport-setup");
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
+const https = require("https");
 
 const authRoutes = require("./routes/auth-routes.js");
 const markRoutes = require("./routes/mark-routes.js");
@@ -14,6 +15,9 @@ const noteRoutes = require("./routes/note-routes.js");
 const userRoutes = require("./routes/user-routes.js");
 const statsRoutes = require("./routes/stats-routes.js");
 const isolateRoutes = require("./routes/isolate-routes.js");
+
+const sslCert = config.get("sslCert");
+const sslKey = config.get("sslKey");
 
 const app = express();
 
@@ -35,24 +39,6 @@ app.use("/uploads/images", express.static(path.join("uploads", "images")));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-//   );
-//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
-
-//   next();
-// });
-
-// app.use(
-//   cors({
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     credentials: true,
-//   })
-// );
-
 app.use("/api/stats", statsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/mark", markRoutes);
@@ -70,6 +56,11 @@ if (process.env.NODE_ENV === "production") {
 
 const PORT = config.get("port") || 5000;
 
+const httpsOptions = {
+  key: fs.readFileSync(sslKey),
+  cert: fs.readFileSync(sslCert),
+};
+
 async function start() {
   try {
     await mongoose.connect(config.get("mongoUri"), {
@@ -77,9 +68,11 @@ async function start() {
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-    app.listen(PORT, () =>
-      console.log(`App has been started on port ${PORT}...`)
-    );
+    https
+      .createServer(httpsOptions, app)
+      .listen(PORT, () =>
+        console.log(`App has been started on port ${PORT}...`)
+      );
   } catch (e) {
     console.log("Server Error", e.message);
     process.exit(1);

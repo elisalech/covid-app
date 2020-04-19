@@ -5,5 +5,7 @@
   "baseUrl": "https://pointc19.com/",
   "clientID": "366991083646-s20n49fdkdc7l847m7qcce91m6dnnnfh.apps.googleusercontent.com",
   "clientSecret": "mMXhfptQ5tXtfuSz5mqNSw9A",
-  "cookieKey": "rjhjyjdbhecRerbCtrhtnyfzAhfpf"
+  "cookieKey": "rjhjyjdbhecRerbCtrhtnyfzAhfpf",
+  "sslCert": "/etc/ssl/pointc19_com.crt",
+  "sslKey": "/etc/ssl/pointc19_com.key"
 }
