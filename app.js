@@ -15,9 +15,6 @@ const userRoutes = require("./routes/user-routes.js");
 const statsRoutes = require("./routes/stats-routes.js");
 const isolateRoutes = require("./routes/isolate-routes.js");
 
-const sslCert = config.get("sslCert");
-const sslKey = config.get("sslKey");
-
 const app = express();
 
 app.use(

@@ -10,6 +10,9 @@ const {
 const clientID = config.get("clientID");
 const clientSecret = config.get("clientSecret");
 
+const CALLBACK_URL =
+  process.env.NODE_ENV === "production" ? config.get("baseUrl") : "/";
+
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
@@ -21,7 +24,7 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      callbackURL: `${config.get("baseUrl")}api/auth/google/redirect`,
+      callbackURL: `${CALLBACK_URL}api/auth/google/redirect`,
       clientID,
       clientSecret,
     },

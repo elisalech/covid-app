@@ -1,5 +1,5 @@
 {
-  "port": 80,
+  "port": 5000,
   "mongoUriDev": "mongodb+srv://slava:covidDbDev@dev-1-yg6fl.gcp.mongodb.net/test?retryWrites=true&w=majority",
   "mongoUri": "mongodb+srv://covid-admin:fast2bee2020@covid-prod-02nvr.mongodb.net/test?retryWrites=true&w=majority",
   "baseUrl": "https://pointc19.com/",
