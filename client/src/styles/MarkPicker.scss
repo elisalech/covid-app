@@ -1,6 +1,6 @@
 .mark-picker__container {
   width: 128px;
-  height: 126px;
+  height: 168px;
   position: relative;
 
   .picker-opener {
@@ -36,7 +36,7 @@
 
   .picker-wrapper {
     width: 100%;
-    height: 80px;
+    height: 124px;
     position: absolute;
     top: 0px;
     left: 0;
@@ -49,7 +49,8 @@
       display: flex;
       align-items: center;
 
-      &.picker-infection {
+      &.picker-infection,
+      &.picker-isolation {
         border-bottom: 1px solid #ebebeb;
       }
 
@@ -71,6 +72,10 @@
       line-height: 140%;
       color: #999;
       transition: color 0.3s ease;
+    }
+
+    .isolation-icon {
+      background-image: url(../assets/icons/isolation.svg);
     }
 
     .infection-icon {

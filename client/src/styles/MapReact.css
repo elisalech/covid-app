@@ -4,8 +4,7 @@
   -webkit-filter: grayscale(75%);
   /* Chrome 19+ & Safari 6+ */
   /* filter: grayscale(100%); */
-  filter: grayscale(80%);
-  /* invert(100%) */
+  filter: grayscale(100%) invert(100%);
 }
 
 /* .ymaps_https___api_maps_yandex_ru_2_1_76_1074798437030islands_dotIcon___ED4543__ED4543_34x41_1586096984529  */
@@ -28,4 +27,9 @@
 /* [class*="user-selection-non"] > [class*="maps-2-1-76-imag"] */
 .ymaps-2-1-76-user-selection-none .ymaps-2-1-76-image {
   background-image: url(../assets/map/point-me.svg) !important;
+}
+
+[class*="islands_dotIcon___FF931E__FF931E"] {
+  background-image: url(../assets/map/point-me.svg) !important;
+  transform: translateX(-6px);
 }

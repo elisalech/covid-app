@@ -13,7 +13,7 @@ const markRoutes = require("./routes/mark-routes.js");
 const noteRoutes = require("./routes/note-routes.js");
 const userRoutes = require("./routes/user-routes.js");
 const statsRoutes = require("./routes/stats-routes.js");
-const isolateRoutes = require("./routes/isolate-routes.js");
+const isolationRoutes = require("./routes/isolation-routes.js");
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.use(cookieParser());
 // app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
 
-app.use("/uploads/images", express.static(path.join("uploads", "images")));
+app.use("/upl/img", express.static(path.join("upl", "img")));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -58,7 +58,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/mark", markRoutes);
 app.use("/api/note", noteRoutes);
 app.use("/api/user", userRoutes);
-app.use("/api/isolated", isolateRoutes);
+app.use("/api/isolated", isolationRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use("/", express.static(path.join(__dirname, "client", "build")));

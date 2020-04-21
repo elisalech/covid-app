@@ -7,12 +7,12 @@ const User = require("../models/User");
 
 const { getDate } = require("../helpers/app-helpers");
 
-const createIsolated = async (req, res, next) => {
+const createIsolation = async (req, res, next) => {
   console.log(req.body);
-  const { comment, coords, image } = req.body;
+  const { comment, coords, externalImage } = req.body;
   const author = req.user.id;
 
-  console.log("req.file.path", req.file.path);
+  const image = req.file ? req.file.path : externalImage;
 
   const cList = coords.split(",");
 
@@ -20,7 +20,7 @@ const createIsolated = async (req, res, next) => {
 
   const createdIsolated = new Isolated({
     comment: comment.slice(0, 200),
-    image: "",
+    image: image,
     coords: {
       lat: cList[0],
       lng: cList[1],
@@ -69,5 +69,5 @@ const createIsolated = async (req, res, next) => {
 };
 
 module.exports = {
-  createIsolated,
+  createIsolation,
 };

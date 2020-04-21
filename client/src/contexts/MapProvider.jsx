@@ -10,6 +10,7 @@ const MapProvider = ({ children }) => {
   const [selected, setSelected] = useState(null);
   const [position, setPosition] = useState(null);
   const [center, setCenter] = useState(null);
+  const [meIsolation, setMeIsolation] = useState(false);
 
   const getNotes = () => {
     fetch(`/api/note/all`, {
@@ -73,6 +74,8 @@ const MapProvider = ({ children }) => {
         position,
         center,
         setCenter,
+        meIsolation,
+        setMeIsolation,
       }}
     >
       {children}

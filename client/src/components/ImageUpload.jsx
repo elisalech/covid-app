@@ -53,7 +53,8 @@ const ImageUpload = ({ onInput }) => {
   };
 
   return (
-    <>
+    <div className="field">
+      <label>Choose an image:</label>
       <div className="image-upload">
         <input
           // id={props.id}
@@ -63,32 +64,33 @@ const ImageUpload = ({ onInput }) => {
           accept=".jpg,.png,.jpeg"
           onChange={pickedHandler}
         />
-        <div onClick={pickImageHandler}>PICK IMAGE</div>
+        <div className="icon"></div>
+        <div onClick={pickImageHandler}>Pick an image</div>
         {isValid === false && <p>Error! img!</p>}
       </div>
       <div className="field">
-        <label htmlFor="coords" className="coords">
-          Or past a link to image
+        <label htmlFor="externalImage" className="small">
+          Or paste a link to an image:
         </label>
         <input
           type="text"
-          name="imagelink"
-          id="imagelink"
+          name="externalImage"
+          id="externalImage"
           onChange={externalImgHandler}
         />
       </div>
       <div className="image-upload__preview">
         {previewUrl && (
           <ImagePreview
-            width="200"
+            width="248"
             height=""
             previewUrl={previewUrl}
             handleError={handleError}
           />
         )}
-        {!previewUrl && <p>preview description</p>}
+        {/* {!previewUrl && <p>preview description</p>} */}
       </div>
-    </>
+    </div>
   );
 };
 

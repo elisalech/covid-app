@@ -7,6 +7,12 @@ const MarkPicker = () => {
     <div className="mark-picker__container">
       {open && (
         <div className="picker-wrapper">
+          <Link to="/isolation/new">
+            <div className="picker-isolation picker noselect">
+              <div className="isolation-icon icon"></div>
+              <p>Isolation</p>
+            </div>
+          </Link>
           <Link to="/mark/new">
             <div className="picker-infection picker noselect">
               <div className="infection-icon icon"></div>

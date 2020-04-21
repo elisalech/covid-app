@@ -11,7 +11,8 @@ const MapContainer = () => {
     placemark,
     getSelected,
     setPosition,
-    center
+    center,
+    meIsolation,
   } = useContext(MapProvider.context);
   const [isPopup, setIsPopup] = useState(false);
 
@@ -24,6 +25,7 @@ const MapContainer = () => {
         placemark={placemark}
         marks={marks}
         notes={notes}
+        meIsolation={meIsolation}
         handlePopup={setIsPopup}
         handleClickGetCoords={setCoords}
         getSelected={getSelected}

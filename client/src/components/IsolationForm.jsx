@@ -1,10 +1,30 @@
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import React, { useState } from "react";
-import ImageUpload from "./ImageUpload";
 
-const IsolatedForm = ({ coords, handleSubmit, label, handleResize }) => {
+import ImageUpload from "./ImageUpload";
+import MapProvider from "../contexts/MapProvider";
+import getLocation from "../utils/getLocation";
+
+const IsolationForm = ({ coords, handleSubmit, label, handleResize }) => {
+  const { setCenter, setCoords, setMeIsolation } = useContext(
+    MapProvider.context
+  );
   const history = useHistory();
   const [image, setImage] = useState(null);
+  const [me, setMe] = useState(null);
+
+  useEffect(() => {
+    setMeIsolation(true);
+    getLocation(handleLocation);
+  }, []);
+
+  const handleLocation = ({ coords }) => {
+    const { latitude, longitude } = coords;
+    const meCoords = { lat: latitude, lng: longitude };
+    setMe(meCoords);
+    setCoords([meCoords.lat, meCoords.lng]);
+    setCenter(meCoords);
+  };
 
   return (
     <form
@@ -40,7 +60,10 @@ const IsolatedForm = ({ coords, handleSubmit, label, handleResize }) => {
         <button type="button" onClick={() => history.push("/")}>
           Cancel
         </button>
-        <button type="submit" onSubmit={(e) => handleSubmit(e, label, null)}>
+        <button
+          type="submit"
+          onSubmit={(e) => handleSubmit(e, label, { image })}
+        >
           Submit
         </button>
       </div>
@@ -48,4 +71,4 @@ const IsolatedForm = ({ coords, handleSubmit, label, handleResize }) => {
   );
 };
 
-export default IsolatedForm;
+export default IsolationForm;

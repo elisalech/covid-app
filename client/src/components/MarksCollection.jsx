@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 import MapProvider from "../contexts/MapProvider";
 import SingleMark from "./SingleMark";
@@ -10,7 +10,11 @@ const MarksCollection = ({ marks, title }) => {
   const count = marks.length > 0 ? marks.length : "No";
   const markList = marks.map((m, i) => {
     return (
-      <SingleMark key={i} mark={m} handleCenter={() => setCenter(m.coords)} />
+      <SingleMark
+        key={i}
+        mark={m}
+        handleCenter={() => setCenter({ ...m.coords })}
+      />
     );
   });
   return (

@@ -4,7 +4,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import InfectionForm from "../components/InfectionForm";
 import NoteForm from "../components/NoteForm";
 import MapProvider from "../contexts/MapProvider";
-import IsolatedForm from "../components/IsolatedForm";
+import IsolationForm from "../components/IsolationForm";
 
 const CreatePage = () => {
   const { coords, setPlacemark } = useContext(MapProvider.context);
@@ -62,7 +62,7 @@ const CreatePage = () => {
   }
   if (location.includes("isolation/new")) {
     form = (
-      <IsolatedForm
+      <IsolationForm
         label="isolated"
         handleNewPoint={handleNewPoint}
         handleSubmit={handleSubmit}

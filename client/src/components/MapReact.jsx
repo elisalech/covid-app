@@ -10,6 +10,7 @@ import {
 } from "react-yandex-maps";
 
 import meIcon from "../assets/map/point-me.svg";
+import compareObj from "../utils/compareObj";
 
 const YA_API = "baa80640-f2e6-464d-b4c0-8924b020be18";
 
@@ -33,10 +34,38 @@ export default class MapReact extends Component {
       });
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { center } = nextProps;
-    if (center) {
-      this.setState({ center: [center.lat, center.lng] });
+  // static getDerivedStateFromProps(props) {
+  //   const { center, meIsolation } = props;
+  //   if (center) {
+  //     return meIsolation
+  //       ? {
+  //           center: [center.lat, center.lng],
+  //           coordsPl: [center.lat, center.lng],
+  //         }
+  //       : { center: [center.lat, center.lng] };
+  //   }
+  //   return null;
+  // }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { center, meIsolation } = this.props;
+    if (!center) return;
+    const centerCoords = [center.lat, center.lng];
+
+    if (!compareObj(centerCoords, prevState.coordsPl)) {
+      this.setState(
+        meIsolation
+          ? {
+              center: centerCoords,
+              coordsPl: centerCoords,
+            }
+          : { center: centerCoords }
+      );
+      return;
+    }
+
+    if (center !== prevProps.center) {
+      this.setState({ center: centerCoords });
     }
   }
 
@@ -70,7 +99,7 @@ export default class MapReact extends Component {
   };
 
   render() {
-    const { marks, notes, placemark } = this.props;
+    const { marks, notes, placemark, meIsolation } = this.props;
     let { coordsPl, center, defaultCenter } = this.state;
 
     center = center ? center : defaultCenter;
@@ -100,18 +129,20 @@ export default class MapReact extends Component {
             options={{
               float: "right",
               iconLayout: "default#image",
-              // Custom image for the placemark icon.
-              // iconImageHref: meIcon,
-              // The size of the placemark.
               iconImageSize: [30, 42],
-              // The offset of the upper left corner of the icon relative
-              // to its "tail" (the anchor point).
               iconImageOffset: [-3, -42],
             }}
           />
           <ZoomControl options={{ float: "left" }} />
 
-          {placemark && coordsPl && <Placemark geometry={coordsPl} />}
+          {placemark && coordsPl && (
+            <Placemark
+              geometry={coordsPl}
+              options={{
+                preset: meIsolation ? "islands#orangeDotIcon" : undefined,
+              }}
+            />
+          )}
 
           {notes && (
             <ObjectManager
