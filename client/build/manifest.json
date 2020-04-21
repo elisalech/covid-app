@@ -1,6 +1,7 @@
 {
   "short_name": "Point C-19",
   "name": "Covid points app",
+  "description": "Web-app where you can watch for covid marks activity.",
   "icons": [
     {
       "src": "favicon.ico",

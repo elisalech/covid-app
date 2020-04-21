@@ -11,7 +11,7 @@ const clientID = config.get("clientID");
 const clientSecret = config.get("clientSecret");
 
 const CALLBACK_URL =
-  process.env.NODE_ENV === "production" ? config.get("baseUrl") : "/";
+  process.env.NODE_ENV === "production" ? "http://localhost:5000/" : "/";
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
