@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const passport = require("passport");
+const config = require("config");
 
 const REDIRECT_URL =
   process.env.NODE_ENV === "production"
-    ? "http://localhost:5000/"
+    ? config.get("baseUrl")
     : "http://localhost:3000/";
 
 router.get("/logout", (req, res) => {
