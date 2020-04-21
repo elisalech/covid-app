@@ -1,8 +1,8 @@
 import React from "react";
 
-import errorPick from "../assets/icons/google-logo.svg";
+import errorPick from "../assets/error-img.png";
 
-const ImageUpload = ({ previewUrl, width, height, handleError }) => {
+const ImagePreview = ({ previewUrl, width, height, handleError }) => {
   if (!previewUrl) return null;
 
   return (
@@ -21,4 +21,4 @@ const ImageUpload = ({ previewUrl, width, height, handleError }) => {
   );
 };
 
-export default ImageUpload;
+export default ImagePreview;

@@ -63,7 +63,7 @@ const CreatePage = () => {
   if (location.includes("isolation/new")) {
     form = (
       <IsolationForm
-        label="isolated"
+        label="isolation"
         handleNewPoint={handleNewPoint}
         handleSubmit={handleSubmit}
         handleResize={handleResize}

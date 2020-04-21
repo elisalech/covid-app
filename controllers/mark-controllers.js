@@ -225,8 +225,6 @@ const getAllMarks = async (req, res) => {
     };
   });
 
-  // const featuresData = { type: "FeatureCollection", features };
-
   res.status(201).json({ marks: features });
 };
 

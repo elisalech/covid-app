@@ -99,7 +99,7 @@ export default class MapReact extends Component {
   };
 
   render() {
-    const { marks, notes, placemark, meIsolation } = this.props;
+    const { marks, notes, placemark, meIsolation, isolations } = this.props;
     let { coordsPl, center, defaultCenter } = this.state;
 
     center = center ? center : defaultCenter;
@@ -116,14 +116,14 @@ export default class MapReact extends Component {
           style={{ width: "100%", height: "100%" }}
           // instanceRef={inst => inst.events.add("dblclick", handleClickMap)}
           onClick={this.handleClickMap}
-          // defaultState={{
-          //   center: center || [55.79827356447633, 37.7755409362457],
-          //   zoom: 12
-          // }}
-          state={{
+          defaultState={{
             center: center || [55.79827356447633, 37.7755409362457],
-            zoom: 11,
+            zoom: 12,
           }}
+          // state={{
+          //   center: center || [55.79827356447633, 37.7755409362457],
+          //   zoom: 11,
+          // }}
         >
           <GeolocationControl
             options={{
@@ -157,10 +157,6 @@ export default class MapReact extends Component {
                 preset: "islands#blueClusterIcons",
               }}
               features={notes}
-              // modules={[
-              //   "objectManager.addon.objectsBalloon",
-              //   "objectManager.addon.objectsHint"
-              // ]}
               instanceRef={this.handleObjectClick}
             />
           )}
@@ -183,10 +179,22 @@ export default class MapReact extends Component {
                 preset: "islands#redClusterIcons",
               }}
               features={marks}
-              // modules={[
-              //   "objectManager.addon.objectsBalloon",
-              //   "objectManager.addon.objectsHint"
-              // ]}
+              instanceRef={this.handleObjectClick}
+            />
+          )}
+          {isolations && (
+            <ObjectManager
+              options={{
+                clusterize: true,
+                gridSize: 32,
+              }}
+              objects={{
+                preset: "islands#greenDotIcon",
+              }}
+              clusters={{
+                preset: "islands#greenClusterIcons",
+              }}
+              features={isolations}
               instanceRef={this.handleObjectClick}
             />
           )}
@@ -194,19 +202,4 @@ export default class MapReact extends Component {
       </YMaps>
     );
   }
-}
-
-{
-  /*  <Clusterer
-      options={{
-        preset: "islands#invertedVioletClusterIcons",
-        groupByCoordinates: false
-      }}
-    >
-    points &&
-    points.map((coordinates, index) => (
-      <Placemark key={index} geometry={coordinates} />
-    ))
-    </Clusterer>
-    */
 }

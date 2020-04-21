@@ -35,7 +35,6 @@ router.get("/", async (req, res) => {
       recovered: latest.recovered - previous.recovered,
     };
 
-    // res.json(JSON.stringify(obj.features));
     res.json({ updates, latest });
   } catch (e) {
     console.log(e);

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 
-import ImagePreview from "./ImagePreview";
+import ImagePreview from "../UI/ImagePreview";
 
 const ImageUpload = ({ onInput }) => {
   const [file, setFile] = useState(null);
@@ -38,6 +38,7 @@ const ImageUpload = ({ onInput }) => {
   const externalImgHandler = (e) => {
     setIsValid(false);
     setFile(null);
+    onInput(null);
     setPreviewUrl(e.target.value);
 
     if (!e.target.value) return;
@@ -66,7 +67,7 @@ const ImageUpload = ({ onInput }) => {
         />
         <div className="icon"></div>
         <div onClick={pickImageHandler}>Pick an image</div>
-        {isValid === false && <p>Error! img!</p>}
+        {isValid === false && null}
       </div>
       <div className="field">
         <label htmlFor="externalImage" className="small">

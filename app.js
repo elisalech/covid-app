@@ -1,7 +1,6 @@
 const express = require("express");
 const config = require("config");
 const path = require("path");
-const cors = require("cors");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const passportSetup = require("./config/passport-setup");
@@ -35,30 +34,12 @@ app.use("/upl/img", express.static(path.join("upl", "img")));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-//   );
-//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
-
-//   next();
-// });
-
-// app.use(
-//   cors({
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     credentials: true,
-//   })
-// );
-
 app.use("/api/stats", statsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/mark", markRoutes);
 app.use("/api/note", noteRoutes);
 app.use("/api/user", userRoutes);
-app.use("/api/isolated", isolationRoutes);
+app.use("/api/isolation", isolationRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use("/", express.static(path.join(__dirname, "client", "build")));

@@ -8,6 +8,7 @@ const MapContainer = () => {
     setCoords,
     marks,
     notes,
+    isolations,
     placemark,
     getSelected,
     setPosition,
@@ -25,6 +26,7 @@ const MapContainer = () => {
         placemark={placemark}
         marks={marks}
         notes={notes}
+        isolations={isolations}
         meIsolation={meIsolation}
         handlePopup={setIsPopup}
         handleClickGetCoords={setCoords}

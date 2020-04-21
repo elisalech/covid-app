@@ -12,4 +12,4 @@ const isolSchema = new Schema({
   date: { type: String },
 });
 
-module.exports = model("Isolated", isolSchema);
+module.exports = model("Isolation", isolSchema);

@@ -6,6 +6,7 @@ const MapProvider = ({ children }) => {
   const [coords, setCoords] = useState(null);
   const [marks, setMarks] = useState(null);
   const [notes, setNotes] = useState(null);
+  const [isolations, setIsolations] = useState(null);
   const [placemark, setPlacemark] = useState(false);
   const [selected, setSelected] = useState(null);
   const [position, setPosition] = useState(null);
@@ -40,6 +41,20 @@ const MapProvider = ({ children }) => {
       .then((data) => setMarks(data.marks));
   };
 
+  const getIsolations = () => {
+    fetch(`/api/isolation/all`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setIsolations(data.isolations));
+  };
+
   const getSelected = (id, label) => {
     fetch(`/api/${label}/${id}`, {
       method: "GET",
@@ -57,6 +72,7 @@ const MapProvider = ({ children }) => {
   useEffect(() => {
     getNotes();
     getMarks();
+    getIsolations();
   }, []);
 
   return (
@@ -76,6 +92,7 @@ const MapProvider = ({ children }) => {
         setCenter,
         meIsolation,
         setMeIsolation,
+        isolations,
       }}
     >
       {children}

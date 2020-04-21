@@ -2,13 +2,17 @@ import React, { useContext } from "react";
 
 import NotePopup from "../UI/NotePopup";
 import MarkPopup from "../UI/MarkPopup";
+import IsolationPopup from "../UI/IsolationPopup";
 import MapProvider from "../contexts/MapProvider";
+import getPosition from "../utils/getPosition";
 
 const PopupContainer = ({ togglePopup }) => {
   const { selected, position } = useContext(MapProvider.context);
   if (!selected) return null;
 
-  const isNote = selected.hasOwnProperty("note") === true;
+  const isNote = selected.hasOwnProperty("note");
+  const isMark = selected.hasOwnProperty("mark");
+  const isIsolation = selected.hasOwnProperty("isolation");
 
   const [_left, _top] = position;
   const width = 300;
@@ -21,14 +25,22 @@ const PopupContainer = ({ togglePopup }) => {
       className="popup__container"
       style={{ left, top, position: "absolute", width }}
     >
-      {isNote ? (
+      {isNote && (
         <NotePopup
           position={position}
           togglePopup={togglePopup}
           selected={selected}
         />
-      ) : (
+      )}
+      {isMark && (
         <MarkPopup
+          position={position}
+          togglePopup={togglePopup}
+          selected={selected}
+        />
+      )}
+      {isIsolation && (
+        <IsolationPopup
           position={position}
           togglePopup={togglePopup}
           selected={selected}
@@ -39,13 +51,3 @@ const PopupContainer = ({ togglePopup }) => {
 };
 
 export default PopupContainer;
-
-function getPosition(left, top, width, height) {
-  const wWidth = window.innerWidth;
-  const wHeight = window.innerHeight;
-
-  left = wWidth - left > width ? left : left - width;
-  top = wHeight - top > height ? top : top - height;
-
-  return { left, top };
-}

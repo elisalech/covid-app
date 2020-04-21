@@ -7,7 +7,7 @@ const userSchema = new Schema({
   provider: { type: String },
   notes: [{ type: Types.ObjectId, ref: "Note" }],
   marks: [{ type: Types.ObjectId, ref: "Mark" }],
-  isolations: [{ type: Types.ObjectId, ref: "Isolated" }],
+  isolations: [{ type: Types.ObjectId, ref: "Isolation" }],
 });
 
 module.exports = model("User", userSchema);
