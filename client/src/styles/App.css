@@ -1,10 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,400i,500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-:root {
-  --app-height: 100%;
-}
-
 a,
 a:visited {
   color: inherit;
@@ -21,19 +17,6 @@ a:visited {
 
 body {
   font-family: "Poppins", sans-serif;
-}
-
-html,
-body {
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
-
-  @media not all and (hover: hover) {
-    height: var(--app-height);
-  }
 }
 
 #app {
