@@ -58,8 +58,15 @@
     display: flex;
     position: absolute;
     align-items: flex-end;
+    flex-direction: column;
     left: 20px;
     bottom: 18px;
+
+    .user-controls__wrap {
+      display: flex;
+      align-items: flex-end;
+      width: 100%;
+    }
 
     .auth-controls {
       .login-btn {

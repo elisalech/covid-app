@@ -99,7 +99,14 @@ export default class MapReact extends Component {
   };
 
   render() {
-    const { marks, notes, placemark, meIsolation, isolations } = this.props;
+    const {
+      marks,
+      notes,
+      placemark,
+      meIsolation,
+      isolations,
+      isolationMode,
+    } = this.props;
     let { coordsPl, center, defaultCenter } = this.state;
 
     center = center ? center : defaultCenter;
@@ -144,7 +151,7 @@ export default class MapReact extends Component {
             />
           )}
 
-          {notes && (
+          {!isolationMode && notes && (
             <ObjectManager
               options={{
                 clusterize: true,
@@ -160,7 +167,7 @@ export default class MapReact extends Component {
               instanceRef={this.handleObjectClick}
             />
           )}
-          {marks && (
+          {!isolationMode && marks && (
             <ObjectManager
               options={{
                 // hasHint: true,
@@ -182,7 +189,7 @@ export default class MapReact extends Component {
               instanceRef={this.handleObjectClick}
             />
           )}
-          {isolations && (
+          {isolationMode && isolations && (
             <ObjectManager
               options={{
                 clusterize: true,

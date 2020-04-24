@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Avatar from "./Avatar";
 import ImagePreview from "./ImagePreview";
+import SharePanel from "../components/SharePanel";
 
 const IsolationPopup = ({ togglePopup, selected }) => {
+  const location = useLocation().pathname;
   const { isolation } = selected;
   const { author, date, comment, coords, image } = isolation;
 
@@ -31,6 +33,7 @@ const IsolationPopup = ({ togglePopup, selected }) => {
           //   previewUrl={"http://localhost:5000/" + image}
           previewUrl={image}
         />
+        <SharePanel title={comment} shareUrl={location} image={image} />
       </div>
     </>
   );

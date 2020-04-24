@@ -16,7 +16,7 @@ const PopupContainer = ({ togglePopup }) => {
 
   const [_left, _top] = position;
   const width = 300;
-  const height = 240;
+  const height = 450;
 
   const { left, top } = getPosition(_left, _top, width, height);
 

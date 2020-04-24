@@ -12,6 +12,7 @@ const MapProvider = ({ children }) => {
   const [position, setPosition] = useState(null);
   const [center, setCenter] = useState(null);
   const [meIsolation, setMeIsolation] = useState(false);
+  const [isolationMode, setIsolationMode] = useState(false);
 
   const getNotes = () => {
     fetch(`/api/note/all`, {
@@ -69,6 +70,10 @@ const MapProvider = ({ children }) => {
       .then((data) => setSelected(data));
   };
 
+  const toggleMode = () => {
+    setIsolationMode(!isolationMode);
+  };
+
   useEffect(() => {
     getNotes();
     getMarks();
@@ -93,6 +98,8 @@ const MapProvider = ({ children }) => {
         meIsolation,
         setMeIsolation,
         isolations,
+        toggleMode,
+        isolationMode,
       }}
     >
       {children}

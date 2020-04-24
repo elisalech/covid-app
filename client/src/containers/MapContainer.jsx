@@ -14,6 +14,7 @@ const MapContainer = () => {
     setPosition,
     center,
     meIsolation,
+    isolationMode,
   } = useContext(MapProvider.context);
   const [isPopup, setIsPopup] = useState(false);
 
@@ -26,6 +27,7 @@ const MapContainer = () => {
         placemark={placemark}
         marks={marks}
         notes={notes}
+        isolationMode={isolationMode}
         isolations={isolations}
         meIsolation={meIsolation}
         handlePopup={setIsPopup}
