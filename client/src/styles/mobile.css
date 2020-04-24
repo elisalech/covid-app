@@ -26,6 +26,10 @@
     transition: left 0.3s ease;
   }
 
+  .main-footer__container {
+    padding-bottom: 44px;
+  }
+
   .interface-switcher {
     width: 31px;
     height: 100px;
