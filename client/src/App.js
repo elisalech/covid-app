@@ -7,7 +7,15 @@ import InterfaceContainer from "./containers/InterfaceContainer.jsx";
 import UserProvider from "./contexts/UserProvider";
 import MapProvider from "./contexts/MapProvider";
 
+const doc = document.documentElement;
+
 function App() {
+  const appHeight = () => {
+    doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+  };
+  window.addEventListener("resize", appHeight);
+  appHeight();
+
   return (
     <UserProvider>
       <MapProvider>
