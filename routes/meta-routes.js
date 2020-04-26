@@ -46,3 +46,5 @@ function defaultMeta(req, res) {
     res.send(result);
   });
 }
+
+module.exports = { isolationMeta, defaultMeta };

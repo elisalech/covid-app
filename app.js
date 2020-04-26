@@ -13,6 +13,7 @@ const noteRoutes = require("./routes/note-routes.js");
 const userRoutes = require("./routes/user-routes.js");
 const statsRoutes = require("./routes/stats-routes.js");
 const isolationRoutes = require("./routes/isolation-routes.js");
+const { isolationMeta, defaultMeta } = require("./routes/meta-routes.js");
 
 const app = express();
 
@@ -44,9 +45,14 @@ app.use("/api/isolation", isolationRoutes);
 if (process.env.NODE_ENV === "production") {
   app.use("/", express.static(path.join(__dirname, "client", "build")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
+  app.get("/isolation/new", defaultMeta);
+  app.get("/isolation/:iid", isolationMeta);
+
+  app.get("*", defaultMeta);
+
+  // app.get("*", (req, res) => {
+  //   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  // });
 }
 
 const PORT = config.get("port") || 5000;
