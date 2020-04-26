@@ -34,25 +34,13 @@ export default class MapReact extends Component {
       });
   }
 
-  // static getDerivedStateFromProps(props) {
-  //   const { center, meIsolation } = props;
-  //   if (center) {
-  //     return meIsolation
-  //       ? {
-  //           center: [center.lat, center.lng],
-  //           coordsPl: [center.lat, center.lng],
-  //         }
-  //       : { center: [center.lat, center.lng] };
-  //   }
-  //   return null;
-  // }
-
   componentDidUpdate(prevProps, prevState) {
     const { center, meIsolation } = this.props;
     if (!center) return;
     const centerCoords = [center.lat, center.lng];
 
-    if (!compareObj(centerCoords, prevState.coordsPl)) {
+    if (prevState.coordsPl && !compareObj(centerCoords, prevState.coordsPl)) {
+      console.log(centerCoords, prevState.coordsPl);
       this.setState(
         meIsolation
           ? {

@@ -15,8 +15,9 @@ const MapContainer = () => {
     center,
     meIsolation,
     isolationMode,
+    isPopup,
+    setIsPopup,
   } = useContext(MapProvider.context);
-  const [isPopup, setIsPopup] = useState(false);
 
   if (!marks || !notes) return null;
 

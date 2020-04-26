@@ -13,6 +13,7 @@ const MapProvider = ({ children }) => {
   const [center, setCenter] = useState(null);
   const [meIsolation, setMeIsolation] = useState(false);
   const [isolationMode, setIsolationMode] = useState(false);
+  const [isPopup, setIsPopup] = useState(false);
 
   const getNotes = () => {
     fetch(`/api/note/all`, {
@@ -100,6 +101,9 @@ const MapProvider = ({ children }) => {
         isolations,
         toggleMode,
         isolationMode,
+        setIsolationMode,
+        isPopup,
+        setIsPopup,
       }}
     >
       {children}

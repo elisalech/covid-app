@@ -1,14 +1,17 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Avatar from "./Avatar";
 import ImagePreview from "./ImagePreview";
 import SharePanel from "../components/SharePanel";
 
-const IsolationPopup = ({ togglePopup, selected }) => {
-  const location = useLocation().pathname;
+const IsolationPopup = ({ togglePopup, selected, history }) => {
   const { isolation } = selected;
+  const id = isolation._id;
+
   const { author, date, comment, coords, image } = isolation;
+  const shareUrl = "https://pointc19.com/isolation/" + id;
+  console.log(shareUrl);
 
   return (
     <>
@@ -27,13 +30,8 @@ const IsolationPopup = ({ togglePopup, selected }) => {
         <ul>
           <li className="popup-comment">{comment}</li>
         </ul>
-        <ImagePreview
-          width="248"
-          height=""
-          //   previewUrl={"http://localhost:5000/" + image}
-          previewUrl={image}
-        />
-        <SharePanel title={comment} shareUrl={location} image={image} />
+        <ImagePreview width="270" height="" previewUrl={image} />
+        <SharePanel title={comment} shareUrl={shareUrl} image={image} />
       </div>
     </>
   );

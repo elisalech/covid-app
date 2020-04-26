@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import NotePopup from "../UI/NotePopup";
 import MarkPopup from "../UI/MarkPopup";
@@ -8,6 +9,8 @@ import getPosition from "../utils/getPosition";
 
 const PopupContainer = ({ togglePopup }) => {
   const { selected, position } = useContext(MapProvider.context);
+  const history = useHistory();
+
   if (!selected) return null;
 
   const isNote = selected.hasOwnProperty("note");
@@ -16,7 +19,7 @@ const PopupContainer = ({ togglePopup }) => {
 
   const [_left, _top] = position;
   const width = 300;
-  const height = 450;
+  const height = 390;
 
   const { left, top } = getPosition(_left, _top, width, height);
 
@@ -44,6 +47,7 @@ const PopupContainer = ({ togglePopup }) => {
           position={position}
           togglePopup={togglePopup}
           selected={selected}
+          history={history}
         />
       )}
     </div>

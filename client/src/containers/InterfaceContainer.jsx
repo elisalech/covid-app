@@ -8,6 +8,7 @@ import UserPage from "../pages/UserPage";
 import MePage from "../pages/MePage";
 import UserProvider from "../contexts/UserProvider";
 import InterfaceSwitcher from "../components/InterfaceSwitcher";
+import IsolationPage from "../pages/IsolationPage";
 
 function InterfaceContainer() {
   const { isMobile, userData } = useContext(UserProvider.context);
@@ -25,7 +26,7 @@ function InterfaceContainer() {
             <Route path="/user/:uid">
               <UserPage />
             </Route>
-            <Route path="/isolation/:id"></Route>
+            <Route path="/isolation/:iid" component={IsolationPage} />
             <Redirect to="/" exact />
           </Switch>
         </div>
@@ -56,7 +57,7 @@ function InterfaceContainer() {
           <Route path="/user/:uid">
             <UserPage />
           </Route>
-          <Route path="/isolation/:id"></Route>
+          <Route path="/isolation/:iid" component={IsolationPage} />
           <Redirect to="/" exact />
         </Switch>
       </div>
